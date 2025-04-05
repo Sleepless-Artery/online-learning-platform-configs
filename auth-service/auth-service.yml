@@ -1,13 +1,13 @@
 server:
-  port: 8081
+  port: 8085
 
 spring:
   application:
-    name: user-service
+    name: auth-service
   datasource:
-    url: ${USER_DB_URL}
-    username: ${USER_DB_USERNAME}
-    password: ${USER_DB_PASSWORD}
+    url: ${AUTH_DB_URL}
+    username: ${AUTH_DB_USERNAME}
+    password: ${AUTH_DB_PASSWORD}
     driver-class-name: com.mysql.cj.jdbc.Driver
     hikari:
       maximum-pool-size: 10
@@ -32,3 +32,16 @@ management:
   endpoint:
     health:
       show-details: when-authorized
+
+jwt:
+  secret: ${JWT_SECRET}
+  lifetime: 6h
+
+admin:
+  username: ${ADMIN_USERNAME}
+  password: ${ADMIN_PASSWORD}
+
+logging:
+  level:
+    org.springframework: INFO
+    org.sleepless_artery: DEBUG

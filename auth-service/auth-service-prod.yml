@@ -31,6 +31,6 @@ logging:
         SQL: ERROR
         type.descriptor.sql.BasicBinder: ERROR
       sleepless_artery:
-        user_service: INFO
+        auth_service: INFO
     io:
       micrometer: INFO
