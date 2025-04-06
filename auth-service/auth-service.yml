@@ -28,7 +28,7 @@ management:
     web:
       exposure:
         include: health,info
-      base-path: /internal/actuator
+      base-path: ${MANAGEMENT_ENDPOINTS_BASE-PATH}
   endpoint:
     health:
       show-details: when-authorized
