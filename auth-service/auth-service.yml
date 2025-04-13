@@ -38,7 +38,7 @@ jwt:
   lifetime: 6h
 
 admin:
-  username: ${ADMIN_USERNAME}
+  email-address: ${ADMIN_EMAIL_ADDRESS}
   password: ${ADMIN_PASSWORD}
 
 logging:
