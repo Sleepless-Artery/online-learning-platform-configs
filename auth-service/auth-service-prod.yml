@@ -2,21 +2,15 @@ management:
   endpoints:
     web:
       exposure:
-        include: health,info,metrics
+        include: health,info,metrics,prometheus
       base-path: /internal/actuator
-  endpoint:
-    health:
-      show-details: when-authorized
-      probes:
+    jmx:
+      exposure:
+        include: health,metrics
+  metrics:
+    export:
+      prometheus:
         enabled: true
-    prometheus:
-      enabled: true
-    info:
-      env:
-        enabled: true
-  trace:
-    http:
-      enabled: false
 
 logging:
   level:
@@ -25,12 +19,5 @@ logging:
       springframework:
         web: WARN
         security: WARN
-        boot:
-          actuate: INFO
-      hibernate:
-        SQL: ERROR
-        type.descriptor.sql.BasicBinder: ERROR
-      sleepless_artery:
-        auth_service: INFO
-    io:
-      micrometer: INFO
+      hibernate: ERROR
+      sleepless_artery: INFO

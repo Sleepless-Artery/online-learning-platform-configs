@@ -2,8 +2,6 @@ server:
   port: 8085
 
 spring:
-  application:
-    name: auth-service
   datasource:
     url: ${AUTH_DB_URL}
     username: ${AUTH_DB_USERNAME}
@@ -22,26 +20,48 @@ spring:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.MySQL8Dialect
+        format_sql: true
+
+  kafka:
+    bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:host.docker.internal:9092}
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      retries: 5
+      acks: all
+      properties:
+        enable.idempotence: true
+    consumer:
+      group-id: auth-service
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      auto-offset-reset: earliest
+      enable-auto-commit: false
+      properties:
+        spring.json.trusted.packages: org.sleepless_artery.auth_service.*
+        spring.json.type.mapping: credential:org.sleepless_artery.auth_service.dto.credentialDto
 
 management:
   endpoints:
     web:
       exposure:
         include: health,info
-      base-path: ${MANAGEMENT_ENDPOINTS_BASE-PATH}
+      base-path: ${MANAGEMENT_ENDPOINTS_BASE_PATH:/actuator}
   endpoint:
     health:
       show-details: when-authorized
+      probes:
+        enabled: true
 
 jwt:
-  secret: ${JWT_SECRET}
-  lifetime: 6h
+  secret: ${JWT_SECRET:default-secret-key}
+  lifetime: ${JWT_LIFETIME:6h}
 
 admin:
   email-address: ${ADMIN_EMAIL_ADDRESS}
   password: ${ADMIN_PASSWORD}
 
-logging:
-  level:
-    org.springframework: INFO
-    org.sleepless_artery: DEBUG
+grpc:
+  server:
+    port: 9090
+    reflection-service-enabled: true
