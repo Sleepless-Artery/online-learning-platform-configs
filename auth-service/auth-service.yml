@@ -23,23 +23,35 @@ spring:
         format_sql: true
 
   kafka:
-    bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:host.docker.internal:9092}
     producer:
+      bootstrap-servers: host.docker.internal:9092
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
       retries: 5
       acks: all
+      batch-size: 65536
+      delivery-timeout-ms: 30000
+      linger-ms: 1000
+      request-timeout-ms: 10000
+      retry-backoff-ms: 1000
       properties:
         enable.idempotence: true
     consumer:
+      bootstrap-servers: host.docker.internal:9092
       group-id: auth-service
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
       value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
       auto-offset-reset: earliest
       enable-auto-commit: false
-      properties:
-        spring.json.trusted.packages: org.sleepless_artery.auth_service.*
-        spring.json.type.mapping: credential:org.sleepless_artery.auth_service.dto.credentialDto
+      type-mappings: credential:org.sleepless_artery.auth_service.dto.credentialDto
+      concurrency: 1
+      trusted-packages: org.sleepless_artery.auth_service.*
+    topic:
+      prefix: auth
+      domain: users
+      partitions: 1
+      replicas: 1
+      minInsyncReplicas: 1
 
 management:
   endpoints:
