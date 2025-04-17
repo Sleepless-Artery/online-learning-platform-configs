@@ -1,0 +1,44 @@
+server:
+  port: 8086
+
+spring:
+  application:
+    name: notification-service
+  mail:
+    host: smtp.yandex.ru
+    port: 587
+    username: ${MAIL_USERNAME}
+    password: ${MAIL_PASSWORD}
+    protocol: smtp
+    properties:
+      mail:
+        smtp:
+          ssl:
+            enable: true
+          auth: true
+    connection-timeout: 5000
+    timeout: 5000
+    write-timeout: 5000
+
+  kafka:
+    consumer:
+      bootstrap-servers: host.docker.internal:9092
+      group-id: notification-service
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      auto-offset-reset: earliest
+      enable-auto-commit: false
+      concurrency: 1
+      trusted-packages: org.sleepless_artery.notification_service.*
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+      base-path: ${MANAGEMENT_ENDPOINTS_BASE_PATH:/actuator}
+  endpoint:
+    health:
+      show-details: when-authorized
+      probes:
+        enabled: true
