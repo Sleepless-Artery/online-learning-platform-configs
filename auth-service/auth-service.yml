@@ -43,7 +43,7 @@ spring:
       value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
       auto-offset-reset: earliest
       enable-auto-commit: false
-      type-mappings: credential:org.sleepless_artery.auth_service.dto.credentialDto
+      type-mappings: credential:org.sleepless_artery.auth_service.dto.CredentialDto
       concurrency: 1
       trusted-packages: org.sleepless_artery.auth_service.*
     topic:
@@ -52,6 +52,13 @@ spring:
       partitions: 1
       replicas: 1
       minInsyncReplicas: 1
+
+  cache:
+    type: redis
+  data:
+    redis:
+      host: localhost
+      port: 6379
 
 management:
   endpoints:
@@ -77,3 +84,5 @@ grpc:
   client:
     user-auth-api-service:
       address: 'static://localhost:9091'
+      negotiation-type: plaintext
+      
