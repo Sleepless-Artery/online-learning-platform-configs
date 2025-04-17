@@ -1,5 +1,5 @@
 server:
-  port: 8081
+  port: 8082
 
 spring:
   application:
@@ -23,6 +23,48 @@ spring:
       hibernate:
         dialect: org.hibernate.dialect.MySQL8Dialect
 
+  kafka:
+    producer:
+      bootstrap-servers: host.docker.internal:9092
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      retries: 5
+      acks: all
+      batch-size: 65536
+      delivery-timeout-ms: 30000
+      linger-ms: 1000
+      request-timeout-ms: 10000
+      retry-backoff-ms: 1000
+      properties:
+        enable.idempotence: true
+    consumer:
+      bootstrap-servers: host.docker.internal:9092
+      group-id: user-service
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      auto-offset-reset: earliest
+      enable-auto-commit: false
+      type-mappings: user:org.sleepless_artery.user_service.dto.UserRequestDto
+      concurrency: 1
+      trusted-packages: org.sleepless_artery.user_service.*
+    topic:
+      prefix: user
+      domain: profiles
+      partitions: 1
+      replicas: 1
+      minInsyncReplicas: 1
+      
+  cache:
+    type: redis
+  data:
+    redis:
+      host: localhost
+      port: 6381
+
+grpc:
+  server:
+    port: 9091
+    
 management:
   endpoints:
     web:
