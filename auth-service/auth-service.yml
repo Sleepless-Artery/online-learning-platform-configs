@@ -74,6 +74,6 @@ admin:
   password: ${ADMIN_PASSWORD}
 
 grpc:
-  server:
-    port: 9090
-    reflection-service-enabled: true
+  client:
+    user-auth-api-service:
+      address: 'static://localhost:9090'
