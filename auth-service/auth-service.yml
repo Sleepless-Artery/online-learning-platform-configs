@@ -81,8 +81,10 @@ admin:
   password: ${ADMIN_PASSWORD}
 
 grpc:
+  server:
+    port: 9091
   client:
-    user-auth-api-service:
-      address: 'static://localhost:9091'
+    user-service:
+      address: 'static://localhost:9093'
       negotiation-type: plaintext
       

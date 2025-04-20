@@ -63,7 +63,11 @@ spring:
 
 grpc:
   server:
-    port: 9091
+    port: 9093
+  client:
+    auth-service:
+      address: 'static://localhost:9091'
+      negotiation-type: plaintext
     
 management:
   endpoints:
