@@ -46,7 +46,7 @@ spring:
       enable-auto-commit: false
       type-mappings: user:org.sleepless_artery.user_service.dto.UserRequestDto
       concurrency: 1
-      trusted-packages: org.sleepless_artery.user_service.*, org.sleepless_artery.user_auth_api.event.*
+      trusted-packages: org.sleepless_artery.user_service.*,org.sleepless_artery.user_auth_api.event.*
     topic:
       prefix: user
       domain: profiles
