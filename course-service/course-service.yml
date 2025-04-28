@@ -1,0 +1,79 @@
+server:
+  port: 8083
+
+spring:
+  application:
+    name: course-service
+  datasource:
+    url: ${COURSE_DB_URL}
+    username: ${COURSE_DB_USERNAME}
+    password: ${COURSE_DB_PASSWORD}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    hikari:
+      maximum-pool-size: 10
+      minimum-idle: 2
+      idle-timeout: 30000
+      max-lifetime: 1800000
+      connection-timeout: 30000
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+
+  kafka:
+    producer:
+      bootstrap-servers: host.docker.internal:9092
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      retries: 5
+      acks: all
+      batch-size: 65536
+      delivery-timeout-ms: 30000
+      linger-ms: 1000
+      request-timeout-ms: 10000
+      retry-backoff-ms: 1000
+      properties:
+        enable.idempotence: true
+    consumer:
+      bootstrap-servers: host.docker.internal:9092
+      group-id: course-service
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      auto-offset-reset: earliest
+      enable-auto-commit: false
+      concurrency: 1
+      trusted-packages: org.sleepless_artery.*
+    topic:
+      prefix: course
+      domain: courses
+      partitions: 1
+      replicas: 1
+      minInsyncReplicas: 1
+      
+  cache:
+    type: redis
+  data:
+    redis:
+      host: localhost
+      port: 6382
+
+grpc:
+  client:
+    user-service:
+      address: 'static://localhost:9093'
+      negotiation-type: plaintext
+      keep-alive-time: 10s
+      keep-alive-timeout: 5s
+    
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+      base-path: /internal/actuator
+  endpoint:
+    health:
+      show-details: when-authorized
