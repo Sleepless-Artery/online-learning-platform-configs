@@ -24,7 +24,7 @@ spring:
 
   kafka:
     producer:
-      bootstrap-servers: host.docker.internal:9092
+      bootstrap-servers: localhost:9092
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
       retries: 5
@@ -37,7 +37,7 @@ spring:
       properties:
         enable.idempotence: true
     consumer:
-      bootstrap-servers: host.docker.internal:9092
+      bootstrap-servers: localhost:9092
       group-id: auth-service
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
       value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
