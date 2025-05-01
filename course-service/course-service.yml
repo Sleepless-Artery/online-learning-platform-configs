@@ -71,10 +71,8 @@ grpc:
       deadline-after: 10s
     user-service:
       address: 'static://localhost:9093'
-    user-service:
-      address: 'static://localhost:9093'
     lesson-service:
-      address: "static:localhost:9097"
+      address: 'static:localhost:9097'
 
 management:
   endpoints:
