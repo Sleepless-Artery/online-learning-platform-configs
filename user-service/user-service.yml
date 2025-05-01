@@ -67,8 +67,9 @@ grpc:
   client:
     GLOBAL:
       negotiation-type: plaintext
-      keep-alive-time: 10s
-      keep-alive-timeout: 10s
+      keep-alive-time: 30s
+      keep-alive-timeout: 20s
+      deadline-after: 10s
     auth-service:
       address: 'static://localhost:9091'
     course-service:
