@@ -84,13 +84,10 @@ grpc:
   server:
     port: 9091
   client:
-<<<<<<< HEAD
     GLOBAL:
       negotiation-type: plaintext
       keep-alive-time: 10s
       keep-alive-timeout: 10s
-=======
->>>>>>> parent of 7394303 (Updated configuration)
     user-service:
       address: 'static://localhost:9093'
       negotiation-type: plaintext
