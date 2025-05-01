@@ -21,7 +21,7 @@ spring:
     show-sql: false
     properties:
       hibernate:
-        dialect: org.hibernate.dialect.MySQLDialect
+        dialect: org.hibernate.dialect.MySQL8Dialect
 
   kafka:
     producer:
@@ -64,14 +64,22 @@ grpc:
   server:
     port: 9095
   client:
-    GLOBAL:
+    user-service:
+      address: 'static://localhost:9093'
       negotiation-type: plaintext
       keep-alive-time: 10s
+<<<<<<< HEAD
       keep-alive-timeout: 10s
     user-service:
       address: 'static://localhost:9093'
+=======
+      keep-alive-timeout: 5s
+>>>>>>> parent of 7394303 (Updated configuration)
     lesson-service:
       address: "static:localhost:9097"
+      negotiation-type: plaintext
+      keep-alive-time: 10s
+      keep-alive-timeout: 5s  
 
 management:
   endpoints:
