@@ -68,6 +68,9 @@ admin:
   email-address: ${ADMIN_EMAIL_ADDRESS}
   password: ${ADMIN_PASSWORD}
 
+basic-request-path: auth
+
+
 grpc:
   server:
     port: 9091
