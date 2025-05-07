@@ -1,0 +1,62 @@
+server:
+  port: 8085
+
+spring:
+  application:
+    name: lesson-service
+  datasource:
+    url: ${ENROLLMENT_DB_URL}
+    username: ${ENROLLMENT_DB_USERNAME}
+    password: ${ENROLLMENT_DB_PASSWORD}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    hikari:
+      maximum-pool-size: 10
+      minimum-idle: 2
+      idle-timeout: 30000
+      max-lifetime: 1800000
+      connection-timeout: 30000
+  
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+
+    kafka:
+    consumer:
+      bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:localhost:9092}
+      group-id: enrollment-service
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      auto-offset-reset: earliest
+      enable-auto-commit: false
+      concurrency: 1
+      
+
+  data:
+    redis:
+      host: ${REDIS_HOST:localhost}
+      port: ${REDIS_PORT:6384}
+
+grpc:
+  server:
+    port: 9099
+  client:
+    user-service:
+      address: ${USER_SERVICE_GRPC_URL:static://static://localhost:9093}
+      negotiation-type: plaintext
+    course-service:
+      address: ${COURSE_SERVICE_GRPC_URL:static://localhost:9095}
+      negotiation-type: plaintext
+    
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+      base-path: /internal/actuator
+  endpoint:
+    health:
+      show-details: always
