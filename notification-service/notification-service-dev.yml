@@ -1,14 +1,8 @@
 spring:
   jpa:
     show-sql: true
-    properties:
-      hibernate:
-        generate_statistics: true
 
 management:
-  endpoint:
-    health:
-      show-details: always
   endpoints:
     web:
       exposure:
@@ -16,8 +10,10 @@ management:
 
 logging:
   level:
-    root: INFO
     org:
       springframework: DEBUG
-      sleepless_artery: DEBUG
-    com.zaxxer.hikari: DEBUG
+      hibernate:
+        SQL: DEBUG
+        type.descriptor.sql.BasicBinder: TRACE
+      sleepless_artery:
+        notification_service: DEBUG

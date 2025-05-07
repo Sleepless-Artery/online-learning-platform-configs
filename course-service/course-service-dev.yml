@@ -3,9 +3,6 @@ spring:
     show-sql: true
 
 management:
-  endpoint:
-    health:
-      show-details: always
   endpoints:
     web:
       exposure:
@@ -19,4 +16,4 @@ logging:
         SQL: DEBUG
         type.descriptor.sql.BasicBinder: TRACE
       sleepless_artery:
-        user_service: DEBUG
+        course_service: DEBUG

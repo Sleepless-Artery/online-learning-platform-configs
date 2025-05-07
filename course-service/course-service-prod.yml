@@ -6,7 +6,6 @@ management:
       base-path: /internal/actuator
   endpoint:
     health:
-      show-details: when-authorized
       probes:
         enabled: true
     prometheus:

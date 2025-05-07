@@ -25,7 +25,7 @@ spring:
 
   kafka:
     producer:
-      bootstrap-servers: localhost:9092
+      bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:localhost:9092}
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
       retries: 5
@@ -38,7 +38,7 @@ spring:
       properties:
         enable.idempotence: true
     consumer:
-      bootstrap-servers: localhost:9092
+      bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:localhost:9092}
       group-id: user-service
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
       value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
@@ -58,8 +58,8 @@ spring:
     type: redis
   data:
     redis:
-      host: localhost
-      port: 6381
+      host: ${REDIS_HOST:localhost}
+      port: ${REDIS_PORT:6381}
 
 grpc:
   server:
@@ -71,9 +71,9 @@ grpc:
       keep-alive-timeout: 20s
       deadline-after: 10s
     auth-service:
-      address: 'static://localhost:9091'
+      address: ${AUTH_SERVICE_GRPC_URL:static://localhost:9091}
     course-service:
-      address: 'static://localhost:9095'
+      address: ${COURSE_SERVICE_GRPC_URL:static://localhost:9095}
     
 management:
   endpoints:
@@ -83,4 +83,4 @@ management:
       base-path: /internal/actuator
   endpoint:
     health:
-      show-details: when-authorized
+      show-details: always
