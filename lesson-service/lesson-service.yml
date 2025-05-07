@@ -15,6 +15,7 @@ spring:
       idle-timeout: 30000
       max-lifetime: 1800000
       connection-timeout: 30000
+  
   jpa:
     hibernate:
       ddl-auto: update
@@ -25,7 +26,7 @@ spring:
 
   kafka:
     consumer:
-      bootstrap-servers: localhost:9092
+      bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:localhost:9092}
       group-id: lesson-service
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
       value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
@@ -38,22 +39,20 @@ spring:
     type: redis
   data:
     redis:
-      host: localhost
-      port: 6383
+      host: ${REDIS_HOST:localhost}
+      port: ${REDIS_PORT:6383}
 
 grpc:
   client:
     course-service:
-      address: "static://localhost:9095"
+      address: ${COURSE_SERVICE_GRPC_URL:static://localhost:9095}
       negotiation-type: plaintext
     
 management:
-  endpoint:
+  endpoints:
     web:
       exposure:
         include: health,info
-      health:
-        show-details: always
       base-path: /internal/actuator
   endpoint:
     health:
