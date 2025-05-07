@@ -74,7 +74,9 @@ grpc:
       address: ${AUTH_SERVICE_GRPC_URL:static://localhost:9091}
     course-service:
       address: ${COURSE_SERVICE_GRPC_URL:static://localhost:9095}
-    
+    enrollment-service:
+      address: ${ENROLLMENT_SERVICE_GRPC_URL:static:localhost:9099}
+
 management:
   endpoints:
     web:
