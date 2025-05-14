@@ -3,7 +3,7 @@ server:
 
 spring:
   application:
-    name: lesson-service
+    name: enrollment-service
   datasource:
     url: ${ENROLLMENT_DB_URL}
     username: ${ENROLLMENT_DB_USERNAME}
