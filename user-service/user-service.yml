@@ -44,7 +44,6 @@ spring:
       value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
       auto-offset-reset: earliest
       enable-auto-commit: false
-      type-mappings: emailChanged:org.sleepless_artery.user_auth_api.event.ChangeEmailAddressEvent
       concurrency: 1
       trusted-packages: org.sleepless_artery.*
     topic:
@@ -71,11 +70,11 @@ grpc:
       keep-alive-timeout: 20s
       deadline-after: 10s
     auth-service:
-      address: ${AUTH_SERVICE_GRPC_URL:static://localhost:9091}
+      address: ${AUTH_SERVICE_GRPC_URL:static://auth-service:9091}
     course-service:
-      address: ${COURSE_SERVICE_GRPC_URL:static://localhost:9095}
+      address: ${COURSE_SERVICE_GRPC_URL:static://course-service:9095}
     enrollment-service:
-      address: ${ENROLLMENT_SERVICE_GRPC_URL:static:localhost:9099}
+      address: ${ENROLLMENT_SERVICE_GRPC_URL:static://enrollment-service:9099}
 
 management:
   endpoints:

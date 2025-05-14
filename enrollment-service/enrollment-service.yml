@@ -51,9 +51,9 @@ grpc:
       keep-alive-timeout: 20s
       deadline-after: 10s
     user-service:
-      address: ${USER_SERVICE_GRPC_URL:static://localhost:9093}
+      address: ${USER_SERVICE_GRPC_URL:static://user-service:9093}
     course-service:
-      address: ${COURSE_SERVICE_GRPC_URL:static://localhost:9095}
+      address: ${COURSE_SERVICE_GRPC_URL:static://course-service:9095}
     
 management:
   endpoints:

@@ -70,11 +70,11 @@ grpc:
       keep-alive-timeout: 20s
       deadline-after: 10s
     user-service:
-      address: ${USER_SERVICE_GRPC_URL:static://localhost:9093}
+      address: ${USER_SERVICE_GRPC_URL:static://user-service:9093}
     lesson-service:
-      address: ${LESSON_SERVICE_GRPC_URL:static://localhost:9097}
+      address: ${LESSON_SERVICE_GRPC_URL:static://lesson-service:9097}
     enrollment-service:
-      address: ${ENROLLMENT_SERVICE_GRPC_URL:static://localhost:9099}
+      address: ${ENROLLMENT_SERVICE_GRPC_URL:static://enrollment-service:9099}
 
 management:
   endpoints:

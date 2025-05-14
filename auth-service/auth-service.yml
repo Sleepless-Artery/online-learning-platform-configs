@@ -2,6 +2,8 @@ server:
   port: 8081
 
 spring:
+  application:
+    name: auth-service
   datasource:
     url: ${AUTH_DB_URL}
     username: ${AUTH_DB_USERNAME}
@@ -43,7 +45,6 @@ spring:
       value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
       auto-offset-reset: earliest
       enable-auto-commit: false
-      type-mappings: credential:org.sleepless_artery.auth_service.dto.CredentialDto
       concurrency: 1
       trusted-packages: org.sleepless_artery.auth_service.*
     topic:
@@ -81,8 +82,7 @@ grpc:
       keep-alive-timeout: 20s
       deadline-after: 10s
     user-service:
-      address: ${USER_SERVICE_GRPC_URL:static://localhost:9093}
-      negotiation-type: plaintext
+      address: ${USER_SERVICE_GRPC_URL:static://user-service:9093}
       
 management:
   endpoints:
