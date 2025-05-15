@@ -17,7 +17,7 @@ spring:
       connection-timeout: 30000
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: validate
     show-sql: false
   flyway:
     enabled: true
@@ -25,6 +25,7 @@ spring:
     encoding: UTF-8
     validate-on-migrate: true
     baseline-on-migrate: true
+    init-sqls: "SELECT pg_sleep(5)"
 
   kafka:
     producer:
