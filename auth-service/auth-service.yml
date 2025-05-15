@@ -59,7 +59,7 @@ spring:
   data:
     redis:
       host: ${AUTH_REDIS_HOST:redis-auth}
-      port: ${AUTH_REDIS_PORT:6380}
+      port: ${AUTH_REDIS_PORT:6379}
 
 jwt:
   secret: ${JWT_SECRET:default-secret-key}

@@ -38,7 +38,7 @@ spring:
       properties:
         enable.idempotence: true
     consumer:
-      bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:kafka:9092}
+      bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:kafka:29092}
       group-id: user-service
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
       value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
@@ -58,7 +58,7 @@ spring:
   data:
     redis:
       host: ${USERS_REDIS_HOST:redis-users}
-      port: ${USERS_REDIS_PORT:6381}
+      port: ${USERS_REDIS_PORT:6379}
 
 grpc:
   server:

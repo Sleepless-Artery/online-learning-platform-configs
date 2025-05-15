@@ -25,7 +25,7 @@ spring:
 
   kafka:
     producer:
-      bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:kafka:9092}
+      bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:kafka:29092}
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
       retries: 5
@@ -38,7 +38,7 @@ spring:
       properties:
         enable.idempotence: true
     consumer:
-      bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:kafka:9092}
+      bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:kafka:29092}
       group-id: course-service
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
       value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
@@ -58,7 +58,7 @@ spring:
   data:
     redis:
       host: ${COURSES_REDIS_HOST:redis-courses}
-      port: ${COURSES_REDIS_PORT:6382}
+      port: ${COURSES_REDIS_PORT:6379}
 
 grpc:
   server:

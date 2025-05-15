@@ -39,7 +39,7 @@ spring:
       properties:
         enable.idempotence: true
     consumer:
-      bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:kafka:9092}
+      bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:kafka:29092}
       group-id: lesson-service
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
       value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
@@ -59,7 +59,7 @@ spring:
   data:
     redis:
       host: ${LESSONS_REDIS_HOST:redis-lessons}
-      port: ${LESSONS_REDIS_PORT:6383}
+      port: ${LESSONS_REDIS_PORT:6379}
 
 grpc:
   client:
