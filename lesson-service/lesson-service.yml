@@ -4,6 +4,8 @@ server:
 spring:
   application:
     name: lesson-service
+  main:
+    lazy-initialization: true
   datasource:
     url: ${LESSON_DB_URL}
     username: ${LESSON_DB_USERNAME}
@@ -15,6 +17,7 @@ spring:
       idle-timeout: 30000
       max-lifetime: 1800000
       connection-timeout: 30000
+      initialization-fail-timeout: 60000
   jpa:
     hibernate:
       ddl-auto: validate
@@ -25,7 +28,8 @@ spring:
     encoding: UTF-8
     validate-on-migrate: true
     baseline-on-migrate: true
-    init-sqls: "SELECT pg_sleep(5)"
+    connection-retries: 10
+    init-sqls: "SELECT 1"
 
   kafka:
     producer:

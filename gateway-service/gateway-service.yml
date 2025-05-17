@@ -4,6 +4,7 @@ server:
 spring:
   main:
     web-application-type: reactive
+    lazy-initialization: true
   application:
     name: gateway-service
   cloud:
