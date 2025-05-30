@@ -32,6 +32,7 @@ spring:
     init-sqls: "SELECT 1"
 
   kafka:
+    bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:kafka:9092}
     producer:
       bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:kafka:9092}
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
