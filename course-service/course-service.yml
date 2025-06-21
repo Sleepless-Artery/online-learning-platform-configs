@@ -32,8 +32,9 @@ spring:
     init-sqls: "SELECT 1"
 
   kafka:
+    bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:kafka:9092}
     producer:
-      bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:kafka:29092}
+      bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:kafka:9092}
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
       retries: 5
@@ -46,7 +47,7 @@ spring:
       properties:
         enable.idempotence: true
     consumer:
-      bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:kafka:29092}
+      bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:kafka:9092}
       group-id: course-service
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
       value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer

@@ -11,6 +11,7 @@ management:
 logging:
   level:
     org:
+      apache.kafka: DEBUG
       springframework: DEBUG
       hibernate:
         SQL: DEBUG
