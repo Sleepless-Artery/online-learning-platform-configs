@@ -4,8 +4,6 @@ server:
 spring:
   application:
     name: notification-service
-  main:
-    lazy-initialization: true
   mail:
     host: smtp.yandex.ru
     port: 587

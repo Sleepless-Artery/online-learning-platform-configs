@@ -4,8 +4,6 @@ server:
 spring:
   application:
     name: course-service
-  main:
-    lazy-initialization: true
   datasource:
     url: ${COURSE_DB_URL}
     username: ${COURSE_DB_USERNAME}

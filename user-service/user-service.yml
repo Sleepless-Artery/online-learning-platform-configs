@@ -4,8 +4,6 @@ server:
 spring:
   application:
     name: user-service
-  main:
-    lazy-initialization: true
   datasource:
     url: ${USER_DB_URL}
     username: ${USER_DB_USERNAME}

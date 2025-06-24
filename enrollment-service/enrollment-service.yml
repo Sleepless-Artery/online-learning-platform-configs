@@ -4,8 +4,6 @@ server:
 spring:
   application:
     name: enrollment-service
-  main:
-    lazy-initialization: true
   datasource:
     url: ${ENROLLMENT_DB_URL}
     username: ${ENROLLMENT_DB_USERNAME}
