@@ -4,7 +4,7 @@
 ## Использование
 Клонируйте репозиторий:
  ```bash
-   git clone https://github.com/ART3RY-G1N/online-learning-platform-configs
+   git clone https://github.com/Sleepless-Artery/online-learning-platform-configs
 ```
 ## Технологии
 - YML
