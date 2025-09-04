@@ -16,4 +16,4 @@ logging:
         SQL: DEBUG
         type.descriptor.sql.BasicBinder: TRACE
       sleepless_artery:
-        auth_service: DEBUG
+        auth_service: INFO
