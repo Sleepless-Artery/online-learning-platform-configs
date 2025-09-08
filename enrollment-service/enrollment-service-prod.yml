@@ -1,3 +1,20 @@
+spring:
+  cache:
+    type: redis
+  data:
+    redis:
+      cluster:
+        nodes: ${ENROLLMENTS_REDIS_CLUSTER_NODES}
+        max-redirects: 3
+      lettuce:
+        pool:
+          max-active: 8
+          max-idle: 8
+        cluster:
+          refresh:
+            adaptive: true
+            period: 2000ms
+
 management:
   endpoints:
     web:

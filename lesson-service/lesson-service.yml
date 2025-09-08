@@ -64,8 +64,9 @@ spring:
     type: redis
   data:
     redis:
-      host: ${LESSONS_REDIS_HOST:redis-lessons}
+      host: ${LESSONS_REDIS_HOST:}
       port: ${LESSONS_REDIS_PORT:6379}
+      password: ${LESSONS_REDIS_PASSWORD:}
 
 grpc:
   client:
