@@ -44,7 +44,7 @@ spring:
   data:
     redis:
       host: ${ENROLLMENTS_REDIS_HOST:}
-      port: ${ENROLLMENTS_REDIS_PORT:6379}
+      port: ${ENROLLMENTS_REDIS_PORT:6383}
       password: ${ENROLLMENTS_REDIS_PASSWORD:}
 
 grpc:

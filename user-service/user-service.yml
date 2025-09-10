@@ -65,7 +65,7 @@ spring:
   data:
     redis:
       host: ${USERS_REDIS_HOST:}
-      port: ${USERS_REDIS_PORT:6379}
+      port: ${USERS_REDIS_PORT:6380}
       password: ${USERS_REDIS_PASSWORD:}
 
 grpc:

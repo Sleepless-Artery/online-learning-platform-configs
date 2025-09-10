@@ -4,7 +4,7 @@ spring:
   data:
     redis:
       cluster:
-        nodes: ${ENROLLMENTS_REDIS_CLUSTER_NODES}
+        nodes: ${REDIS_CLUSTER_NODES}
         max-redirects: 3
       lettuce:
         pool:
