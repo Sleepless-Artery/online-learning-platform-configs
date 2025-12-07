@@ -55,7 +55,7 @@ spring:
       trusted-packages: org.sleepless_artery.lesson_service.*
     topic:
       prefix: lesson
-      domain: course
+      domain: lessons
       partitions: 1
       replicas: 1
       minInsyncReplicas: 1
