@@ -52,7 +52,7 @@ spring:
       auto-offset-reset: earliest
       enable-auto-commit: false
       concurrency: 1
-      trusted-packages: org.sleepless_artery.*
+      trusted-packages: org.sleepless_artery.user_service
     topic:
       prefix: user
       domain: profiles
@@ -64,9 +64,9 @@ spring:
     type: redis
   data:
     redis:
-      host: ${USERS_REDIS_HOST:}
-      port: ${USERS_REDIS_PORT:6379}
-      password: ${USERS_REDIS_PASSWORD:}
+      host: ${USER_REDIS_HOST:}
+      port: ${USER_REDIS_PORT:6379}
+      password: ${USER_REDIS_PASSWORD:}
 
 grpc:
   server:
