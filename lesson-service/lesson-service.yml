@@ -69,6 +69,8 @@ spring:
       password: ${LESSON_REDIS_PASSWORD:}
 
 grpc:
+  server:
+    port: 9097
   client:
     GLOBAL:
       negotiation-type: plaintext
